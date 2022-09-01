@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
+using ModLoader.Model;
 
 namespace ModLoader
 {

@@ -1,6 +1,8 @@
 ﻿using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharpExtantions;
+using ModLoader.Model;
+using ModLoader.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,15 +13,16 @@ using System.Web;
 using System.Windows.Documents;
 using System.Windows.Markup;
 using System.Xml.Linq;
+using YamlDotNet.Core.Tokens;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace ModLoader
+namespace ModLoader.Parsers
 {
-    internal class SynthiraRu : ContentSynthiraRu, IParseConfig, IParseData
+    public class SynthiraRu : ContentSynthiraRu, IParseConfig, IParseData
     {
         // propfull = быстро создать свойсво
 
-        internal SynthiraRu(string url) : base(url)
+        public SynthiraRu(string url) : base(url)
         {
 
 
@@ -38,6 +41,10 @@ namespace ModLoader
         public IHtmlCollection<IElement> Descriptions => FindAll(".messzhfg span");
 
 
+        /// <summary>
+        /// Основной метод
+        /// </summary>
+        /// <returns></returns>
         async public Task<string> GetData()
         {   
             var data = GetContent();
@@ -45,7 +52,36 @@ namespace ModLoader
             {
                 await ParsePage(item.Link, item);
             }
+
+            using (var context = new Context())
+            {
+
+                context.SynthiraRu.AddRange(DataToList(data));
+                context.SaveChanges();
+            }
+            
             return data.DumpAsYaml();
+        }
+
+        private List<Model.Entities.SynthiraRu> DataToList(IBlockData[] data)
+        {
+            List<Model.Entities.SynthiraRu> result = new List<Model.Entities.SynthiraRu>();
+
+            foreach (var item in data)
+            {
+                var el = new Model.Entities.SynthiraRu();
+                el.Name = item.Name;
+                el.Description = item.Description;
+                el.Link = item.Link;
+                el.SourseDownload = item.SourseDownload;
+                el.LinkDownload = item.LinkDownload;
+                el.AboutMod = item.AboutMod;
+                el.DateUpdate = item.DateUpdate[0];
+                result.Add(el);
+            }
+
+            return result;
+
         }
 
 

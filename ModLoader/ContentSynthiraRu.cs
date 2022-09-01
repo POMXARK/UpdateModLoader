@@ -1,6 +1,8 @@
 ﻿using AngleSharp.Dom;
 using AngleSharpExtantions;
 using DownloadLinksExtantions;
+using ModLoader.Model;
+using ModLoader.Parsers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ModLoader
 {
-    internal class ContentSynthiraRu : BaseParse
+    public class ContentSynthiraRu : BaseParse
     {
         public ContentSynthiraRu(string url) : base(url)
         { }

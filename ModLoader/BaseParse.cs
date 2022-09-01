@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Net;
 using AngleSharp.Html.Parser;
+using ModLoader.Model;
+using ModLoader.Model.Entities;
 
 namespace ModLoader
 {
-    internal class BaseParse:  IBaseParse
+    public class BaseParse:  IBaseParse
     {
         protected string url;
         protected IDocument document;

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModLoader
+namespace ModLoader.Model
 {
-    internal interface IBlockData
+    public interface IBlockData
     {
         string Name { get; set; }
         string Description { get; set; }
