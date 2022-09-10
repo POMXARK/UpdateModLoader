@@ -75,14 +75,14 @@ namespace GenRepApp
         public Pack FindModPack(string name)
         { return _context.Set<Pack>().Where(Pack => Pack.Name == name).FirstOrDefault(); }
 
-        public void CreateOrDefault(TEntity item)
+        public void CreateOrSkip(TEntity item)
         {
             _dbSet.Add(item);
             try {_context.SaveChanges();}
             catch (Exception) {}
         }
 
-        public void CreateOrDefault(List<TEntity> items)
+        public void CreateOrSkip(List<TEntity> items)
         {
             _dbSet.AddRange(items);
             try {_context.SaveChanges();}

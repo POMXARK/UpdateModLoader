@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
-using YamlDotNet.Core.Tokens;
 
-namespace DownloadLinksExtantions
+
+namespace ModLoader.Extantions
 {
     static class DownloadLinksExtantions
     {

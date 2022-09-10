@@ -13,7 +13,7 @@ namespace ModLoader.Model.Entities.Base
 
         public static void Create(string name, int parentId)
         {
-            new EFGenericRepository<Mod>().CreateOrDefault(new Mod { Name = name, PackId = parentId });
+            new EFGenericRepository<Mod>().CreateOrSkip(new Mod { Name = name, PackId = parentId });
         }
 
         public static Mod Find(string name)

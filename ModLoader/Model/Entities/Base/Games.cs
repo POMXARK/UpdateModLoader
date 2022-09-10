@@ -8,7 +8,7 @@ namespace ModLoader.Model.Entities.Base
     {
         public static void Create(string name)
         {
-            new EFGenericRepository<Games>().CreateOrDefault(new Games { Name = name });
+            new EFGenericRepository<Games>().CreateOrSkip(new Games { Name = name });
         }
 
         public static Games Find(string name)

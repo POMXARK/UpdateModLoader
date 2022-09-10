@@ -1,24 +1,35 @@
 ﻿
 using GenRepApp;
-using System.Linq;
+using System;
+using System.Collections.Generic;
 
 namespace ModLoader.Model.Entities.Base
 {
-    public class WebResource : TableFields
+    public class WebResource
     {
+        public int Id { get; set; }
         public virtual Mod Mod { get; set; }
         public int ModId { get; set; }
         public string Url { get; set; }
 
 
-        public static void Create(string name, string url, int parentId)
+        public string Description { get; set; }
+        public DateTime DateUpdate { get; set; }
+        public string Link { get; set; }
+        public string SourseDownload { get; set; }
+        public string LinkDownload { get; set; }
+        public string AboutMod { get; set; }
+
+
+        public static void Create(List<WebResource> list)
         {
-            new EFGenericRepository<WebResource>().CreateOrDefault(new WebResource { Name = name, Url=url, ModId = parentId });
+            new EFGenericRepository<WebResource>().CreateOrSkip(list);
         }
 
-        public static WebResource Find(string name)
+        public static void Create(WebResource list)
         {
-            return new Context().Set<WebResource>().Where(WebResource => WebResource.Name == name).FirstOrDefault();
+            new EFGenericRepository<WebResource>().CreateOrSkip(list);
         }
+
     }
 }

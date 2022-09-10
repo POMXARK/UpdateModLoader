@@ -16,9 +16,16 @@ namespace ModLoader.Model.Entities
         public DbSet<Mod> Mods { get; set; }
         public DbSet<WebResource> WebResources { get; set; }
 
-
-        public DbSet<SynthiraRu> SynthiraRu { get; set; }
-
+        // Сделать модель правил установки( для особых случаев) Имя мода: список файлов, установка.
+        // 
+        // Обработать modfile по шаблону , ожидать , перегружать при ошибке.
+        //
+        // бд реализовать функционал запоминания обновленных данных
+        // переработать пaрсер! РЕФАКТОРИНГ
+        // доработать парсер ( возможно стоит вынести в python soup, нет двойная работа по ORM, и беспорядок в архитектуре )
+        // обновлять поле update из кода при парсинге единожды , если нет изменений
+        // бд не загружать файлы если запись уже есть в базе данных    
+        // отвязать скачивание и распаковку от парсера (искользовать бд как источник)
 
         protected override void OnConfiguring(
             DbContextOptionsBuilder optionsBuilder)

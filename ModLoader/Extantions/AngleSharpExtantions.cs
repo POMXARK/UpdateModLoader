@@ -1,21 +1,18 @@
-﻿using AngleSharp;
-using AngleSharp.Dom;
+﻿using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
+using ModLoader.Extantions;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using YamlDotNet.Serialization;
-using static System.Net.Mime.MediaTypeNames;
 
 
-namespace AngleSharpExtantions
-{   
+namespace ModLoader.Extantions
+{
     /// <summary>
     /// Расширение методов пакета AngleSharp
     /// </summary>
@@ -26,7 +23,7 @@ namespace AngleSharpExtantions
         /// </summary>
         /// <returns>Parser</returns>
         private static HtmlParser Parser()
-        {return new HtmlParser(new HtmlParserOptions{IsNotConsumingCharacterReferences = true,});}
+        { return new HtmlParser(new HtmlParserOptions { IsNotConsumingCharacterReferences = true, }); }
 
         /// <summary>
         /// Html документ
@@ -34,7 +31,7 @@ namespace AngleSharpExtantions
         /// <param name="elementHtml"></param>
         /// <returns>Document</returns>
         private static IDocument Document(this IElement elementHtml)
-        { return Parser().ParseDocument(elementHtml.Html());}
+        { return Parser().ParseDocument(elementHtml.Html()); }
 
         /// <summary>
         /// Html документ
@@ -42,7 +39,7 @@ namespace AngleSharpExtantions
         /// <param name="elementHtml"></param>
         /// <returns>IDocument</returns>
         private static IDocument Document(this IHtmlCollection<IElement> elementHtml)
-        {return Parser().ParseDocument(elementHtml.Html());}
+        { return Parser().ParseDocument(elementHtml.Html()); }
 
         /// <summary>
         /// Преобразует элемент в текст удалив html тэги
@@ -82,8 +79,8 @@ namespace AngleSharpExtantions
         public static string RemoveTabbing(this string fmt)
         {
             return string.Join(
-                System.Environment.NewLine,
-                fmt.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                Environment.NewLine,
+                fmt.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(fooline => fooline.Trim()));
         }
 
@@ -93,12 +90,12 @@ namespace AngleSharpExtantions
         /// <param name="o"></param>
         /// <returns>string</returns>
         public static string DumpAsYaml(this object o)
-            {
-                var stringBuilder = new StringBuilder();
-                var serializer = new Serializer();
-                serializer.Serialize(new IndentedTextWriter(new StringWriter(stringBuilder)), o);
-                return stringBuilder.ToString();
-            }
+        {
+            var stringBuilder = new StringBuilder();
+            var serializer = new Serializer();
+            serializer.Serialize(new IndentedTextWriter(new StringWriter(stringBuilder)), o);
+            return stringBuilder.ToString();
+        }
 
         /// <summary>
         /// Удаляет переданный html тэг из строки
@@ -107,7 +104,7 @@ namespace AngleSharpExtantions
         /// <returns>string</returns>
         public static string StripHTML(this string input)
         {
-            return Regex.Replace(input, "<.*?>", String.Empty);
+            return Regex.Replace(input, "<.*?>", string.Empty);
         }
 
         /// <summary>
@@ -139,7 +136,7 @@ namespace AngleSharpExtantions
                 {
 
                 }
-                
+
             }
 
             if (!dates.Any())
@@ -157,7 +154,7 @@ namespace AngleSharpExtantions
         /// <param name="cssSelectors"></param>
         /// <returns>IElement</returns>
         public static IElement Find(this IElement elementHtml, string cssSelectors)
-        {return Document(elementHtml).QuerySelector(cssSelectors);}
+        { return elementHtml.Document().QuerySelector(cssSelectors); }
 
         /// <summary>
         /// Поиск первого элемента в html документе
@@ -166,7 +163,7 @@ namespace AngleSharpExtantions
         /// <param name="cssSelectors"></param>
         /// <returns>IElement</returns>
         public static IElement Find(this IHtmlCollection<IElement> htmlCollection, string cssSelectors)
-        {return Document(htmlCollection).QuerySelector(cssSelectors);}
+        { return htmlCollection.Document().QuerySelector(cssSelectors); }
 
         /// <summary>
         /// Поиск всех элемента в html документе
@@ -175,7 +172,7 @@ namespace AngleSharpExtantions
         /// <param name="cssSelectors"></param>
         /// <returns>IHtmlCollection<IElement></returns>
         public static IHtmlCollection<IElement> FindAll(this IElement elementHtml, string cssSelectors)
-        {return Document(elementHtml).QuerySelectorAll(cssSelectors);}
+        { return elementHtml.Document().QuerySelectorAll(cssSelectors); }
 
         /// <summary>
         /// Поиск всех элемента в html документе
@@ -183,7 +180,7 @@ namespace AngleSharpExtantions
         /// <param name="htmlCollection"></param>
         /// <param name="cssSelectors"></param>
         /// <returns>IHtmlCollection<IElement></returns>
-        public static IHtmlCollection<IElement> FindAll (this IHtmlCollection<IElement> htmlCollection, string cssSelectors)
-        {return Document(htmlCollection).QuerySelectorAll(cssSelectors);}
+        public static IHtmlCollection<IElement> FindAll(this IHtmlCollection<IElement> htmlCollection, string cssSelectors)
+        { return htmlCollection.Document().QuerySelectorAll(cssSelectors); }
     }
 }

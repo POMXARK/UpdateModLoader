@@ -7,30 +7,23 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Migrations\**" />
-    <EmbeddedResource Remove="Migrations\**" />
-    <None Remove="Migrations\**" />
-    <Page Remove="Migrations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="20220904065152_NewTables.cs" />
-    <Compile Remove="20220904065152_NewTables.Designer.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.17.1" />
+    <PackageReference Include="CliWrap" Version="3.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Selenium.WebDriver" Version="4.4.0" />
+    <PackageReference Include="Selenium.WebDriver.WaitExtensions" Version="2.0.0" />
     <PackageReference Include="YamlDotNet" Version="12.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="ViewModel\" />
   </ItemGroup>
 

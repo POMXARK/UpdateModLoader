@@ -113,33 +113,6 @@ namespace ModLoader.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ModId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ModId");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("WebResources");
-                });
-
-            modelBuilder.Entity("ModLoader.Model.Entities.SynthiraRu", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("AboutMod")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -159,25 +132,22 @@ namespace ModLoader.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ModId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("SourseDownload")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("WebResourceId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasIndex("ModId");
 
-                    b.HasIndex("WebResourceId");
-
-                    b.ToTable("SynthiraRu");
+                    b.ToTable("WebResources");
                 });
 
             modelBuilder.Entity("ModLoader.Model.Entities.Base.Mod", b =>
@@ -222,17 +192,6 @@ namespace ModLoader.Migrations
                         .IsRequired();
 
                     b.Navigation("Mod");
-                });
-
-            modelBuilder.Entity("ModLoader.Model.Entities.SynthiraRu", b =>
-                {
-                    b.HasOne("ModLoader.Model.Entities.Base.WebResource", "WebResource")
-                        .WithMany()
-                        .HasForeignKey("WebResourceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("WebResource");
                 });
 #pragma warning restore 612, 618
         }
