@@ -3,6 +3,7 @@ using AngleSharp;
 using System;
 using System.Threading.Tasks;
 using AngleSharp.Html.Parser;
+<<<<<<<< HEAD:ModLoader/Service/AngleSharpParser/BaseParse.cs
 using System.IO;
 using System.Net.Http;
 using ModLoader.Service.AngleSharpParser.Interface;
@@ -10,6 +11,15 @@ using ModLoader.Service.ParseColumns.Interface;
 using ModLoader.Service.ParseColumns;
 
 namespace ModLoader.Service.AngleSharpParser
+========
+using ModLoader.Model;
+using ModLoader.Model.Entities;
+using System.IO;
+using System.Net.Http;
+using ModLoader.Service.Interface;
+
+namespace ModLoader.Service.Parser
+>>>>>>>> 70a9e3c421f048c6c9d834cd8ec6bc260a8eac3c:ModLoader/Service/Parser/BaseParse.cs
 {
     public class BaseParse : IBaseParse
     {
