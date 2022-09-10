@@ -1,13 +1,12 @@
 ﻿
-using ModLoader.Model.Entities.Base;
 using System;
 using System.Collections.Generic;
 
-namespace EntityCRUDExample
+namespace ModLoader.Model.Entities.Base.Interface
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        void CreateOrDefault(TEntity item);
+        void CreateOrSkip(TEntity item);
         TEntity Find(int id);
         IEnumerable<TEntity> Get();
         IEnumerable<TEntity> Get(Func<TEntity, bool> predicate);

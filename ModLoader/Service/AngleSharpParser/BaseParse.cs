@@ -1,19 +1,17 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Net;
 using AngleSharp.Html.Parser;
-using ModLoader.Model;
-using ModLoader.Model.Entities;
+using System.IO;
+using System.Net.Http;
+using ModLoader.Service.AngleSharpParser.Interface;
+using ModLoader.Service.ParseColumns.Interface;
+using ModLoader.Service.ParseColumns;
 
-namespace ModLoader
+namespace ModLoader.Service.AngleSharpParser
 {
-    public class BaseParse:  IBaseParse
+    public class BaseParse : IBaseParse
     {
         protected string url;
         protected IDocument document;
@@ -25,11 +23,11 @@ namespace ModLoader
             context = BrowsingContext.New(BrowserConfiguration);
         }
 
-        public IBrowsingContext Context { get => context;}
+        public IBrowsingContext Context { get => context; }
         public string Document { get => document.DocumentElement.OuterHtml; }
 
 
-        public string Url{get => url; set => url = value;}
+        public string Url { get => url; set => url = value; }
 
         public HtmlParser Parser => new(new HtmlParserOptions { IsNotConsumingCharacterReferences = true, });
 
@@ -62,6 +60,25 @@ namespace ModLoader
             document = await context.OpenAsync(url);
         }
 
-
+        public async Task SaveDataIntoLocalFolder(string url, string fileName)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+                    var stream = await response.Content.ReadAsStreamAsync();
+                    var fileInfo = new FileInfo(fileName);
+                    using (var fileStream = fileInfo.OpenWrite())
+                    {
+                        await stream.CopyToAsync(fileStream);
+                    }
+                }
+                else
+                {
+                    throw new Exception("File not found");
+                }
+            }
+        }
     }
 }

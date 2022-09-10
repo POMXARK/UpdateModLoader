@@ -23,6 +23,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"></RowDefinition>
                             <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
                             <RowDefinition ></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0">
@@ -31,7 +32,8 @@
                             <RadioButton>Lumia 550</RadioButton>
                         </StackPanel>
                         <Button Content="Button" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click" Grid.Row="1"/>
-                        <ScrollViewer Grid.Row="2">
+                        <Button Content="Test" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click_Test" Grid.Row="2"/>
+                        <ScrollViewer Grid.Row="3">
                             <TextBox HorizontalAlignment="Left" Margin="22,71,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" x:Name="HtmlOutput" Grid.Row="2"/>
                         </ScrollViewer>
                     </Grid>

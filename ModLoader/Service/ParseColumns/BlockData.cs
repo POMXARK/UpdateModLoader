@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ModLoader.Service.ParseColumns.Interface;
 
-namespace ModLoader.Model.Entities
+namespace ModLoader.Service.ParseColumns
 {
     public struct BlockData : IBlockData
     {

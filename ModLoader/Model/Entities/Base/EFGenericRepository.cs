@@ -1,22 +1,20 @@
 ﻿
-using AngleSharp.Dom;
-using EntityCRUDExample;
 using Microsoft.EntityFrameworkCore;
-using ModLoader.Model.Entities;
-using ModLoader.Model.Entities.Base;
+using ModLoader.Model.Entities.Base.Interface;
+using ModLoader.Model.Entities.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Xml.Linq;
 
-namespace GenRepApp
+
+namespace ModLoader.Model.Entities.Base
 {   /// <summary>
     /// https://metanit.com/sharp/entityframework/3.13.php
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
 
-    public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class 
+    public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         DbContext _context;
         DbSet<TEntity> _dbSet;
@@ -67,7 +65,7 @@ namespace GenRepApp
         }
 
         public Games FindGames(string name)
-        {return _context.Set<Games>().Where(Games => Games.Name == name).FirstOrDefault();}
+        { return _context.Set<Games>().Where(Games => Games.Name == name).FirstOrDefault(); }
 
         public ModCollection FindModCollection(string name)
         { return _context.Set<ModCollection>().Where(ModCollection => ModCollection.Name == name).FirstOrDefault(); }
@@ -75,18 +73,18 @@ namespace GenRepApp
         public Pack FindModPack(string name)
         { return _context.Set<Pack>().Where(Pack => Pack.Name == name).FirstOrDefault(); }
 
-        public void CreateOrDefault(TEntity item)
+        public void CreateOrSkip(TEntity item)
         {
             _dbSet.Add(item);
-            try {_context.SaveChanges();}
-            catch (Exception) {}
+            try { _context.SaveChanges(); }
+            catch (Exception) { }
         }
 
-        public void CreateOrDefault(List<TEntity> items)
+        public void CreateOrSkip(List<TEntity> items)
         {
             _dbSet.AddRange(items);
-            try {_context.SaveChanges();}
-            catch (Exception) {}
+            try { _context.SaveChanges(); }
+            catch (Exception) { }
         }
 
         public void Update(TEntity item)

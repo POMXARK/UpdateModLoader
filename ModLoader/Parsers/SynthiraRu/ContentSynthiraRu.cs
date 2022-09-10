@@ -1,16 +1,11 @@
 ﻿using AngleSharp.Dom;
-using AngleSharpExtantions;
-using DownloadLinksExtantions;
-using ModLoader.Model;
-using ModLoader.Parsers;
+using ModLoader.Extantions;
+using ModLoader.Service.AngleSharpParser;
+using ModLoader.Service.ParseColumns.Interface;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace ModLoader
+namespace ModLoader.Parsers.SynthiraRu
 {
     public class ContentSynthiraRu : BaseParse
     {
@@ -18,21 +13,21 @@ namespace ModLoader
         { }
         public IHtmlCollection<IElement> Blocks => FindAll(".filekmod");
 
-            public IBlockData[] GetContent()
+        public IBlockData[] GetContent()
+        {
+            var blocks = Blocks;
+            IBlockData[] datas = new IBlockData[blocks.Length];
+            for (int i = 0; i < blocks.Length; i++)
             {
-                var blocks = Blocks;
-                IBlockData[] datas = new IBlockData[blocks.Length];
-                for (int i = 0; i < blocks.Length; i++)
-                {
-                    var data = Data;
-                    var modInfo = blocks[i].Find(".entryLink");
-                    data.Link = modInfo.GetAttribute("href");
-                    data.Name = modInfo.Text().RemoveTabbing();
-                    data.Description = blocks[i].Find(".messzhfg span").Text();
-                    data.DateUpdate = blocks[i].Find(".datemsz").Html().ParseDate();
-                    datas[i] = data;
-                }
-            return datas;            
+                var data = Data;
+                var modInfo = blocks[i].Find(".entryLink");
+                data.Link = modInfo.GetAttribute("href");
+                data.Name = modInfo.Text().RemoveTabbing();
+                data.Description = blocks[i].Find(".messzhfg span").Text();
+                data.DateUpdate = blocks[i].Find(".datemsz").Html().ParseDate();
+                datas[i] = data;
+            }
+            return datas;
         }
 
         public async Task<IBlockData> ParsePage(string link, IBlockData data)

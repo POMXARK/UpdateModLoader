@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ModLoader.Model
+
+namespace ModLoader.Service.ParseColumns.Interface
 {
     public interface IBlockData
     {

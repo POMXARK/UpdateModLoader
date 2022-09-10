@@ -1,8 +1,9 @@
-﻿using GenRepApp;
+﻿
+using ModLoader.Model.Entities.Base;
 using System;
 using System.Linq;
 
-namespace ModLoader.Model.Entities.Base
+namespace ModLoader.Model.Entities.Tables
 {
     public class Pack : TableFields
     {
@@ -13,7 +14,7 @@ namespace ModLoader.Model.Entities.Base
 
         public static void Create(string name, int parentId)
         {
-            new EFGenericRepository<Pack>().CreateOrDefault(new Pack { Name = name, ModCollectionId = parentId });
+            new EFGenericRepository<Pack>().CreateOrSkip(new Pack { Name = name, ModCollectionId = parentId });
         }
 
         public static Pack Find(string name)

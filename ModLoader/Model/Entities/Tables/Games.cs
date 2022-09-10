@@ -1,14 +1,15 @@
 ﻿
-using GenRepApp;
+
+using ModLoader.Model.Entities.Base;
 using System.Linq;
 
-namespace ModLoader.Model.Entities.Base
+namespace ModLoader.Model.Entities.Tables
 {
     public class Games : TableFields
     {
         public static void Create(string name)
         {
-            new EFGenericRepository<Games>().CreateOrDefault(new Games { Name = name });
+            new EFGenericRepository<Games>().CreateOrSkip(new Games { Name = name });
         }
 
         public static Games Find(string name)

@@ -363,3 +363,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ModLoader/products.db
+/ModLoader/20220904085214_Fix.Designer.cs
+/ModLoader/20220904085214_Fix.cs
+/ModLoader/20220904082157_NewsTables.Designer.cs
+/ModLoader/20220904082157_NewsTables.cs
