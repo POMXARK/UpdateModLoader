@@ -26,7 +26,7 @@ namespace ModLoader.Model.Entities.Base
         protected override void OnConfiguring(
             DbContextOptionsBuilder optionsBuilder)
         {
-            string developBase = "C:\\Users\\User\\source\\repos\\ModLoader\\ModLoader\\products.db";
+            string developBase = "C:\\Users\\User\\source\\repos\\POMXARK\\UpdateModLoader\\ModLoader\\products.db";
 
             optionsBuilder.UseSqlite("Data Source=" + developBase);
 
