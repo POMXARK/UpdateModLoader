@@ -1,0 +1,19 @@
+﻿<Window x:Class="ModLoader.View.GameSelection"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ModLoader.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="200" d:DesignWidth="400"
+      Title="ModLoader">
+
+    <Grid>
+        <ComboBox HorizontalAlignment="Center" Height="31" Margin="0,92,0,0" VerticalAlignment="Top" Width="305">
+            <TextBlock>Sims 4</TextBlock>
+            <TextBlock>Skyrim SE</TextBlock>
+        </ComboBox>
+        <Label Content="Игра" HorizontalAlignment="Center" Height="46" Margin="0,33,0,0" VerticalAlignment="Top" Width="291" FontSize="24"/>
+
+    </Grid>
+</Window>

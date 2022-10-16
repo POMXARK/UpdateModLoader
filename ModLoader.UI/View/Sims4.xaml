@@ -1,0 +1,61 @@
+﻿<Window x:Class="ModLoader.UI.View.Sims4"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModLoader.UI.View"
+        mc:Ignorable="d"
+        Title="Sims4" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Menu Height="25" VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="3">
+            <MenuItem Header="Фаил">
+                <MenuItem Header="Новая сборка" ></MenuItem>
+                <MenuItem Header="Откыть сборку" x:Name="namesPacks">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="{x:Type MenuItem}">
+                            <EventSetter Event="Click" Handler="PolygonShapesMenu_OnClick"/>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Exit" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit" ></MenuItem>
+            <MenuItem Header="View" ></MenuItem>
+        </Menu>
+        <ListBox Grid.Row="1" x:Name="collectionPacks">
+            <ListBox.Resources>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                    <EventSetter Event="PreviewMouseDown"  Handler="OnMouseDownStartDrag" />
+                    <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="SnapsToDevicePixels" Value="true" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                                <Grid>
+                                    <CheckBox Content="{TemplateBinding  Name}"/>
+                                    
+                                    <!--<Label Content="{Binding Name}"/>-->
+                                </Grid>
+                                <!--<CheckBox IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsChecked, Mode=TwoWay}" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked">
+                                --><!--<CheckBox Margin="5,2"
+                                          IsChecked="{TemplateBinding IsSelected}" x:Name="swithPack">--><!--
+                                <ContentPresenter/>
+                            </CheckBox>-->
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ListBox.Resources>
+        </ListBox>
+    </Grid>
+</Window>
