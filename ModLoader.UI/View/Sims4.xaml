@@ -22,7 +22,7 @@
                 <MenuItem Header="Откыть сборку" x:Name="namesPacks">
                     <MenuItem.ItemContainerStyle>
                         <Style TargetType="{x:Type MenuItem}">
-                            <EventSetter Event="Click" Handler="PolygonShapesMenu_OnClick"/>
+                            <!--<EventSetter Event="Click" Handler="PolygonShapesMenu_OnClick"/>-->
                         </Style>
                     </MenuItem.ItemContainerStyle>
                 </MenuItem>
@@ -35,7 +35,7 @@
         <ListBox Grid.Row="1" x:Name="collectionPacks">
             <ListBox.Resources>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-                    <EventSetter Event="PreviewMouseDown"  Handler="OnMouseDownStartDrag" />
+                    <!--<EventSetter Event="PreviewMouseDown"  Handler="OnMouseDownStartDrag" />-->
                     <Setter Property="OverridesDefaultStyle" Value="true" />
                 <Setter Property="SnapsToDevicePixels" Value="true" />
                 <Setter Property="Template">
