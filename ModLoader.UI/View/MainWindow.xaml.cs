@@ -1,5 +1,4 @@
 ﻿
-using ModLoader.Parsers.SynthiraRu;
 using ModLoader.UI.Data.Repositories;
 using MVVM;
 using System.Linq;
@@ -15,14 +14,14 @@ namespace ModLoader.UI.View
     {
         public MainWindow()
         {
-            InitializeComponent();
-            DataContext = new SimsApplicationViewModel();
+            //InitializeComponent();
+            //DataContext = new SimsApplicationViewModel();
 
-            //var test = new List<string> { "iPhone 6S Plus", "Nexus 6P", "Galaxy S7 Edge" };
-            var test = GamesRepository.GetAll().Select(u => u.Name).ToList()[0];
-            tabHeader.Text = test;
-            var mods = ModRepository.GetAll().Select(u => u.Name).ToList();
-            testList.ItemsSource = mods;
+            ////var test = new List<string> { "iPhone 6S Plus", "Nexus 6P", "Galaxy S7 Edge" };
+            //var test = GamesRepository.GetAll().Select(u => u.Name).ToList()[0];
+            //tabHeader.Text = test;
+            //var mods = ModRepository.GetAll().Select(u => u.Name).ToList();
+            //testList.ItemsSource = mods;
         }
 
         async private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,11 +32,11 @@ namespace ModLoader.UI.View
             //HtmlOutput.Text = await test.parseSynthira();
 
 
-            SynthiraRuRepository soup = new SynthiraRuRepository("https://synthira.ru/load/drugie_igry/the_sims_4/");
-            await soup.ParseData(); // обязательный метод
+            //SynthiraRuRepository soup = new SynthiraRuRepository("https://synthira.ru/load/drugie_igry/the_sims_4/");
+           /* await soup.ParseData();*/ // обязательный метод
             //HtmlOutput.Text = soup.Descriptions.Text();
 
-            HtmlOutput.Text = await soup.GetData();
+            //HtmlOutput.Text = await soup.GetData();
 
             ///
 
@@ -92,7 +91,7 @@ namespace ModLoader.UI.View
 
         private void Button_Click_All(object sender, RoutedEventArgs e)
         {
-            TestHtmlOutput.Text = GamesRepository.GetAll().ToArray()[0].Name;//.DumpAsYaml();
+           /* TestHtmlOutput.Text = GamesRepository.GetAll().ToArray()[0].Name;*///.DumpAsYaml();
         }
 
 

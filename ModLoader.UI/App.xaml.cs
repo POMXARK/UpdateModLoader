@@ -1,17 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 using System.Windows;
+using ModLoader.UI.Data.Repositories;
+using ModLoader.UI.Data.Repositories.Interfaces;
+using Prism.DryIoc;
+using Prism.Ioc;
 
 namespace ModLoader.UI
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
+        protected override Window CreateShell()
+        {
+            return new MainWindow();
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.Register<IGamesRepository, GamesRepository>();
+            containerRegistry.Register<IModCollectionRepository, ModCollectionRepository>();
+            containerRegistry.Register<IModRepository, ModRepository>();
+            containerRegistry.Register<IPackRepository, PackRepository>();
+            containerRegistry.Register<IWebResourceRepository, WebResourceRepository>();
+        }
     }
 }

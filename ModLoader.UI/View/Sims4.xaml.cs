@@ -17,7 +17,7 @@ namespace ModLoader.UI.View
         public Sims4()
         {
             InitializeComponent();
-            namesPacks.ItemsSource = ModCollectionRepository.GetAll().Select(u => u.Name).ToList();
+            //namesPacks.ItemsSource = ModCollectionRepository.GetAll().Select(u => u.Name).ToList();
         }
 
         private void PolygonShapesMenu_OnClick(object sender, RoutedEventArgs e)
@@ -25,7 +25,7 @@ namespace ModLoader.UI.View
             MenuItem clickedItem = (MenuItem)sender;
             //MessageBox.Show(clickedItem.Header.ToString());
             var collectionId = ModCollectionRepository.Find(clickedItem.Header.ToString()).Id;
-            collectionPacks.ItemsSource = PackRepository.GetAll().Where(u => u.ModCollectionId == collectionId).Select(u => u.Name).ToList();
+            //collectionPacks.ItemsSource = PackRepository.GetAll().Where(u => u.ModCollectionId == collectionId).Select(u => u.Name).ToList();
         }
 
         private void OnMouseDownStartDrag(object sender, RoutedEventArgs e)

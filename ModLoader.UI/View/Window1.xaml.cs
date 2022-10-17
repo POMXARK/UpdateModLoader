@@ -14,7 +14,7 @@ namespace ModLoader.UI.View
         public Window1()
         {
             InitializeComponent();
-            SellectGame.ItemsSource = GamesRepository.GetAll().Select(u => u.Name).ToList();
+            //SellectGame.ItemsSource = GamesRepository.GetAll().Select(u => u.Name).ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

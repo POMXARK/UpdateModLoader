@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ModLoader.DataAccess;
 using ModLoader.Model;
-using ModLoader.UI.Data.Repositories;
+using ModLoader.UI.Data.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,22 +15,19 @@ namespace ModLoader.UI.Data.Repositories
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
 
-    public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity, TContext> : IGenericRepository<TEntity> 
+        where TEntity : class
+        where TContext : DbContext
     {
-        DbContext _context;
+        protected readonly TContext? _context;
         DbSet<TEntity> _dbSet;
 
-        public EFGenericRepository(DbContext context)
+        protected GenericRepository(TContext context)
         {
             _context = context;
-            _dbSet = context.Set<TEntity>();
-        }
-
-        public EFGenericRepository()
-        {
-            _context = new Context();
             _dbSet = _context.Set<TEntity>();
         }
+
 
         public IEnumerable<TEntity> GetWithInclude(params Expression<Func<TEntity, object>>[] includeProperties)
         {

@@ -1,24 +1,14 @@
-﻿using ModLoader.Model;
-using System.Collections.Generic;
+﻿using ModLoader.DataAccess;
+using ModLoader.Model;
+using ModLoader.UI.Data.Repositories.Interfaces;
 
 namespace ModLoader.UI.Data.Repositories
 {
-    public class WebResourceRepository
+    public class WebResourceRepository : GenericRepository<WebResource, Context>, 
+        IWebResourceRepository
     {
-        public static void Create(List<WebResource> list)
+        protected WebResourceRepository(Context context) : base(context)
         {
-            new EFGenericRepository<WebResource>().CreateOrSkip(list);
         }
-
-        public static void Create(WebResource list)
-        {
-            new EFGenericRepository<WebResource>().CreateOrSkip(list);
-        }
-
-        public static IEnumerable<WebResource> GetAll()
-        {
-            return new EFGenericRepository<WebResource>().Get();
-        }
-
     }
 }

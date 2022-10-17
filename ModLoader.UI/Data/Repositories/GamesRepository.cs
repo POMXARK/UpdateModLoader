@@ -1,25 +1,20 @@
 ﻿using ModLoader.DataAccess;
 using ModLoader.Model;
-using System.Collections.Generic;
+using ModLoader.UI.Data.Repositories.Interfaces;
 using System.Linq;
 
 namespace ModLoader.UI.Data.Repositories
 {
-    public class GamesRepository : TableFields
+    public class GamesRepository : GenericRepository<Games, Context>,
+                                    IGamesRepository
     {
-        public static void Create(string name)
+        public GamesRepository(Context context) : base(context)
         {
-            new EFGenericRepository<Games>().CreateOrSkip(new Games { Name = name });
         }
 
-        public static Games Find(string name)
+        public Games Find(string name)
         {
             return new Context().Set<Games>().Where(Games => Games.Name == name).FirstOrDefault();
-        }
-
-        public static IEnumerable<Games> GetAll()
-        {
-            return new EFGenericRepository<Games>().Get();
         }
     }
 

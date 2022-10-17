@@ -1,25 +1,19 @@
 ﻿using ModLoader.DataAccess;
 using ModLoader.Model;
-using System.Collections.Generic;
+using ModLoader.UI.Data.Repositories.Interfaces;
 using System.Linq;
 
 namespace ModLoader.UI.Data.Repositories
 {
-    public class PackRepository : TableFields
+    public class PackRepository : GenericRepository<Pack, Context>, IPackRepository
     {
-        public static void Create(string name, int parentId)
+        public PackRepository(Context context) : base(context)
         {
-            new EFGenericRepository<Pack>().CreateOrSkip(new Pack { Name = name, ModCollectionId = parentId });
         }
 
-        public static Pack Find(string name)
+        public Pack Find(string name)
         {
             return new Context().Set<Pack>().Where(Pack => Pack.Name == name).FirstOrDefault();
-        }
-
-        public static IEnumerable<Pack> GetAll()
-        {
-            return new EFGenericRepository<Pack>().Get();
         }
     }
 }
