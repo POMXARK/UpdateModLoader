@@ -26,7 +26,7 @@
     <Compile Update="View\Sims4.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\Window1.xaml.cs">
+    <Compile Update="View\GameSelectionWindow.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

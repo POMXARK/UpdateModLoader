@@ -1,6 +1,29 @@
-﻿using Prism.Mvvm;
+﻿using AngleSharp.Io;
+using Prism.Mvvm;
 using System.Collections.ObjectModel;
 using System.Linq;
+
+/// MVVM зависимости загрузка данных
+/// public MainWindow(MainViewModel viewModel)
+///{
+///    InitializeComponent();
+///   _viewModel = viewModel;
+///    DataContext = _viewModel;
+///    Loaded += MainWindow_LoadedAsync;
+///}
+///  private async void MainWindow_LoadedAsync(object sender, RoutedEventArgs e) {
+///    await _viewModel.LoadAsync(); }
+/// public async Task LoadAsync()
+/// await NavigationViewModel.LoadAsync();
+/// private IEventAggregator _eventAggregator;
+/// IEventAggregator eventAggregator
+/// Friends = new ObservableCollection<NavigationItemViewModel>();
+/// public ObservableCollection<NavigationItemViewModel> Friends { get; set; }
+/// public async Task LoadAsync()
+/// Friends.Add(new NavigationItemViewModel(item.Id, item.DisplayMember,
+///      nameof(FriendDetailViewModel),
+///      _eventAggregator));
+
 
 
 namespace ModLoader.UI.Data.Repositories
